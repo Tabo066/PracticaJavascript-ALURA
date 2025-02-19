@@ -60,7 +60,8 @@ console.log("Índice de 'Python':", encontrarIndice(lenguagesDeProgramacion, 'Py
 console.log("Suma de listas:", sumarListas([1, 2, 3], [4, 5, 6]));
 console.log("Cuadrado de los números:", cuadradoLista([2, 4, 6]));
 
-// funciones para practicar.
+    document.getElementById('valorUsuario1').disabled = true;
+    document.getElementById('valorUsuario2').disabled = true;
 function asignarTextoElemento(elemento, texto) {
     let elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto;
@@ -68,15 +69,32 @@ function asignarTextoElemento(elemento, texto) {
 }
 
 function calcularIMC() {
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa el peso';
+    document.getElementById('valorUsuario2').placeholder = 'Ingresa la altura';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = false;
 	let altura1 = parseInt(document.getElementById('valorUsuario1').value);
     let peso1 = parseInt(document.getElementById('valorUsuario2').value);
+    if (isNaN(altura1)||isNaN(peso1)) {
+        return asignarTextoElemento('h1',`Ingrese ambas medidas validas`);
+    }
     let imc = peso1 / (altura1 * altura1);
     return asignarTextoElemento('h1',`El indice de masa corporal es ${imc}`);
 }
 
 function calcularFactorial() {
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa el numero factorial';
+    document.getElementById('valorUsuario2').placeholder = '';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = true;
 	let number = parseInt(document.getElementById('valorUsuario1').value);
     let resultado = 1;
+    if (number <0 || isNaN(number)) {
+        return asignarTextoElemento('h1',`Ingrese un numero valido`);
+    }
+    else if (number === 0) {
+        return asignarTextoElemento('h1',`el factorial de 0 es 1`);
+    }
     for (let i = 1; i <= number; i++) {
         resultado *= i;
     }
@@ -84,29 +102,57 @@ function calcularFactorial() {
 }
 
 function convertirDolaresADolaresReales() {
-    const cotizacionDolar = 4.80; // Cotización del dólar en reales
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa cantidad de USD';
+    document.getElementById('valorUsuario2').placeholder = '';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = true;
+    const cotizacionDolar = 4.80;
     let reales = parseInt(document.getElementById('valorUsuario1').value) * cotizacionDolar;
+    if (reales < 0 || isNaN(reales)) {
+        return asignarTextoElemento('h1',`Ingrese una cantidad de dolares valida`);
+    }
     return asignarTextoElemento('h1',`esa cantidad de dolares son ${reales} reales`);
 }
 
 function calcularAreaYPerimetroRectangulo() {
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa altura del rectangulo';
+    document.getElementById('valorUsuario2').placeholder = 'Ingresa anchura del rectangulo';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = false;
 	let altura = parseInt(document.getElementById('valorUsuario1').value)
 	let anchura = parseInt(document.getElementById('valorUsuario2').value)
+    if (isNaN(altura)||isNaN(anchura)) {
+        return asignarTextoElemento('h1',`Ingrese ambas medidas validas`);
+    }
     const areaRectangulo = altura * anchura;
     const perimetroRectangulo = 2 * (altura + anchura);
 	return asignarTextoElemento('h1',`Área del rectangulo: ${areaRectangulo} m², Perímetro del rectangulo: ${perimetroRectangulo} m`);
 }
 
 function calcularAreaYPerimetroCirculo() {
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa el radio del circulo';
+    document.getElementById('valorUsuario2').placeholder = '';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = true;
     let radio = parseInt(document.getElementById('valorUsuario1').value)
     const pi = 3.14;
+    if (radio < 0 || isNaN(radio)) {
+        return asignarTextoElemento('h1',`Ingrese una medida valida`);
+    }
     const areaCirculo = pi * Math.pow(radio, 2);
     const perimetroCirculo = 2 * pi * radio;
     return asignarTextoElemento('h1',`Área del circulo: ${areaCirculo} m², Perímetro del circulo: ${perimetroCirculo} m`);
 }
 
 function mostrarTablaMultiplicar() {
+    document.getElementById('valorUsuario1').placeholder = 'Ingresa el numero a multiplicar';
+    document.getElementById('valorUsuario2').placeholder = '';
+    document.getElementById('valorUsuario1').disabled = false;
+    document.getElementById('valorUsuario2').disabled = true;
     let numeroTabla = parseInt(document.getElementById('valorUsuario1').value)
+    if (isNaN(numeroTabla)) {
+        return asignarTextoElemento('h1',`Ingrese un numero valido`);
+    }
     for (let i = 1; i <= 10; i++) {
         console.log(`${numeroTabla} x ${i} = ${numeroTabla * i}`);
         return asignarTextoElemento('h1',`${numeroTabla} x ${i} = ${numeroTabla * i}`);
@@ -117,6 +163,10 @@ function reinicio() {
     asignarTextoElemento('h1',`Respuestas`);
     document.getElementById('valorUsuario1').value = ""
     document.getElementById('valorUsuario2').value = ""
+    document.getElementById('valorUsuario1').placeholder = '';
+    document.getElementById('valorUsuario2').placeholder = '';
+    document.getElementById('valorUsuario1').disabled = true;
+    document.getElementById('valorUsuario2').disabled = true;
 }
 
 
