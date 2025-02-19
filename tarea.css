@@ -19,7 +19,7 @@ body {
 
 section {
 	position: absolute;
-	background-color: rgba(0, 0, 255, 0.7);
+	background-color: rgba(0, 50, 0, 0.5);
 	border-radius: 8px;
 	display: flex;
 	flex-direction: column;
